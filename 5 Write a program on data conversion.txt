@@ -1,0 +1,66 @@
+INLAB
+AIM : Design classes such that they support the following statements:
+Rupee r1,r2; Dollar d1,d2;
+d1=r1;
+r2=d2;
+
+#include <iostream>
+
+using namespace std;
+
+
+class Dollar{
+public:
+    int dollar;
+    Dollar();
+    Dollar(int d);
+    float operator=(Rupee r);
+    void display();
+};
+
+float Dollar::operator=(Rupee r){
+    return r / 70;
+}
+Dollar::Dollar(){
+    this->dollar = 0;
+} // default
+Dollar::Dollar(int d){
+    this->dollar = d;
+} // paremeterised
+
+void Dollar::display(){
+    cout<<this->dollar<<endl;
+}
+
+
+class Rupee{
+public:
+    int rupees;
+    Rupee();
+    Rupee(int r);
+    void display();
+    float operator=(Dollar d);
+};
+float Rupee::operator=(Dollar d){
+    this->rupees = d.dollar * 70;
+}
+Rupee::Rupee(){
+    this->rupees = 0;
+} // default constructor
+Rupee::Rupee(int r){
+    this->rupees = r;
+} // paremeterised constructor
+void Rupee::display(){
+    cout<<this->rupees<<endl;
+}
+
+
+int main()
+{
+    Rupee r1;
+    Dollar d1;
+    d1.dollar = 11;
+    r1 = d1;
+    r1.display();
+    return 0;
+}

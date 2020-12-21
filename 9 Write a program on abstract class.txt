@@ -1,0 +1,65 @@
+AIM : Write a program having student class as an abstract class and create many derived classes
+such as engineering,medical,science etc from student class.Create their object and process them.
+
+#include <iostream>
+
+using namespace std;
+
+class Student{
+public:
+    virtual void introduce()=0;
+};
+
+class Engineering:public Student{
+public:
+    void introduce(){
+        cout<<"Engineering introducing..."<<endl;
+    }
+};
+
+class Medical:public Student{
+public:
+    void introduce(){
+        cout<<"Doctor introducing..."<<endl;
+    }
+};
+
+int main()
+{
+    Engineering e;
+    e.introduce();
+    Medical m;
+    m.introduce();
+}
+
+
+#include <iostream>
+
+using namespace std;
+
+class Student{
+public:
+    virtual void introduce()=0;
+};
+
+class Engineering:public Student{
+public:
+    void introduce(){
+        cout<<"Engineering introducing..."<<endl;
+    }
+};
+
+class Medical:public Student{
+public:
+    void introduce(){
+        cout<<"Doctor introducing..."<<endl;
+    }
+};
+
+int main()
+{
+    Engineering e;
+    e.introduce();
+    Medical m;
+    m.introduce();
+}

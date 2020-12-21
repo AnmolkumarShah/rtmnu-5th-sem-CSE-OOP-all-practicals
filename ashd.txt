@@ -1,0 +1,66 @@
+#include <iostream>
+
+using namespace std;
+
+class Something{
+public:
+    int x;
+    int y;
+    int z;
+    Something(int x = 0,int y = 0,int z = 0){
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+    Something operator+(Something &t);
+    Something operator-(Something &t);
+    Something operator*(Something &t);
+    Something operator/(Something &t);
+   friend ostream & operator<<(ostream &o,Something &s);
+};
+
+ostream & operator<<(ostream &o,Something &s){
+   o<<s.x<<" "<<s.y<<" "<<s.z<<endl;
+   return o;
+}
+
+Something Something::operator+(Something &t){
+    Something temp;
+    temp.x = this->x + t.x;
+    temp.y = this->y + t.y;
+    temp.z = this->z + t.z;
+    return temp;
+}
+
+Something Something::operator-(Something &t){
+    Something temp;
+    temp.x = this->x - t.x;
+    temp.y = this->y - t.y;
+    temp.z = this->z - t.z;
+    return temp;
+}
+
+Something Something::operator*(Something &t){
+    Something temp;
+    temp.x = this->x * t.x;
+    temp.y = this->y * t.y;
+    temp.z = this->z * t.z;
+    return temp;
+}
+
+Something Something::operator/(Something &t){
+    Something temp;
+    temp.x = this->x / t.x;
+    temp.y = this->y / t.y;
+    temp.z = this->z / t.z;
+    return temp;
+}
+
+int main()
+{
+    Something s1(10,20,30),s2(40,50,60),s3;
+    s3 = s1+s2;
+    s3 = s1*s2;
+    cout<<s3;
+    return 0;
+}

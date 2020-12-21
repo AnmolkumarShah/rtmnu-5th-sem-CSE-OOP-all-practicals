@@ -1,0 +1,24 @@
+AIM : Write C++ program using STL for Double ended queue
+
+#include <iostream>
+#include<deque>
+
+using namespace std;
+
+void display(deque<int> d){
+    deque<int> :: iterator i;
+    for(i = d.begin();i!=d.end();++i){
+        cout<<*i<<"\t";
+    }
+}
+
+int main()
+{
+    deque<int> list;
+    list.push_back(10);
+    list.push_back(20);
+    list.push_front(100);
+    list.push_front(200);
+    display(list);
+    return 0;
+}

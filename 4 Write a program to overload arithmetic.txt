@@ -1,0 +1,126 @@
+INLAB AIM : Write a program to overload arithmetic operators for objects that has been allocated
+memory dynamically
+
+POSTLAB AIM : Write a program to oveload prefix and postfix version of increment and
+decrement operator
+
+#include <iostream>
+
+using namespace std;
+
+// Inlab
+class Stack{
+private:
+    int top;
+    int size;
+    int *arr;
+public:
+    void setTop(int t);
+    int getTop();
+    Stack();
+    void operator+(int data);
+    int operator-();
+    void display();
+};
+
+void Stack::setTop(int t){
+    this->top = t;
+}
+int Stack::getTop(){
+    return this->top;
+}
+Stack::Stack(){
+    this->top = -1;
+    cout<<"Enter Size of Stack"<<endl;
+    cin>>this->size;
+    this->arr = new int[this->size];
+}
+void Stack::operator+(int data){
+      if(this->getTop() == this->size){
+        cout<<"Stack Overflow"<<endl;
+        return;
+    }
+    this->setTop(this->getTop() + 1);
+    this->arr[this->getTop()] = data;
+}
+
+int Stack::operator-(){
+    if(this->getTop() == -1){
+        cout<<"Stack is Empty"<<endl;
+        return 0;
+    }
+    int data = this->arr[this->getTop()];
+    this->setTop(this->getTop() - 1);
+    return data;
+}
+
+void Stack::display(){
+    for(int i=0;i<=this->getTop();i++){
+        cout<<this->arr[i]<<" ";
+    }
+}
+
+// postlab
+class Check{
+private:
+    int i;
+public:
+    Check();
+    Check operator++();
+    Check operator++(int);
+    Check operator--();
+    Check operator--(int);
+    void display();
+};
+
+void Check::display(){
+    cout<<this->i<<endl;
+}
+
+Check Check::operator++(){
+    Check temp;
+    temp.i = ++this->i;
+    return temp;
+}
+
+// int inside parenthesis indecates post increment
+Check Check::operator++(int){
+    Check temp;
+    temp.i = this->i++;
+    return temp;
+}
+
+Check Check::operator--(){
+    Check temp;
+    temp.i = --this->i;
+    return temp;
+}
+
+// int inside parenthesis indecates post increment
+Check Check::operator--(int){
+    Check temp;
+    temp.i = this->i--;
+    return temp;
+}
+
+Check::Check(){
+    this->i = 0;
+}
+
+int main()
+{
+    Stack s;
+    s+10; // overloading + operator
+    s+20; // overloading - operator
+    s.display();
+    Check c;
+    c++;
+    c.display();
+    ++c;
+    c.display();
+    c--;
+    c.display();
+    --c;
+    c.display();
+    return 0;
+}

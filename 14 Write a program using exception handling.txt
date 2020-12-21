@@ -1,0 +1,50 @@
+INLAB AIM : Crete User defined exception to check the following conditions and throw the
+exception if the criterion does not meet.
+a.User has age between 18 and 55
+b.User has income between Rs. 50,000 –Rs. 1,00,000 per month
+c.User stays in Pune/ Mumbai/ Bangalore / Chennai
+d.User has 4-wheeler
+Accept age, Income, City,Vehicle from the user and check for the conditions mentioned above. If
+any of the condition not met then throw the exception.
+
+
+#include <iostream>
+
+using namespace std;
+
+class User{
+private:
+    int age;
+    float salary;
+    string city;
+    int haveFourWeeler;
+public:
+    User(int age,float salary,string city,int haveFourWeeler);
+};
+
+User::User(int age,float salary,string city,int haveFourWeeler){
+    try{
+      if(age<18 || age > 55)
+        throw 1;
+      if(salary<50000 || salary > 100000)
+        throw 2;
+      if(city != "pune" && city != "mumbai" && city != "chennai" && city != "bangalore")
+        throw 3;
+      if(!haveFourWeeler)
+        throw 4;
+
+        this->age = age;
+        this->city = city;
+        this->haveFourWeeler = haveFourWeeler;
+        this->salary = salary;
+    }
+    catch(int e){
+        cout<<"Error "<<e<<endl;
+    }
+}
+
+int main()
+{
+    User u(3,55000,"pune",1);
+    return 0;
+}

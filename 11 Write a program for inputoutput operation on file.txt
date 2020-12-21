@@ -1,0 +1,126 @@
+Aim : Write a program for input/output operation on file
+
+#include <iostream>
+#include<fstream>
+
+using namespace std;
+
+class Person{
+private:
+    string name;
+    int age;
+    string dept;
+public:
+    Person(){
+        this->name = "Anonymous";
+        this->age = 0;
+        this->dept = "Null";
+    }
+    Person(string name,int age,string dept){
+        this->name = name;
+        this->age = age;
+        this->dept = dept;
+    }
+    void display(){
+        cout<<"Name :"<<name<<" age "<<age<<" department "<<dept<<endl;
+    }
+    void setName(string name){
+        this->name = name;
+    }
+    void setAge(int age){
+        this->age = age;
+    }
+    friend ostream & operator<<(ostream& ofc, Person& p){
+        ofc<<p.name<<endl;
+        ofc<<p.age<<endl;
+        ofc<<p.dept<<endl;
+        ofc<<endl;
+        return ofc;
+    }
+    friend istream & operator>>(istream& ifc, Person& p){
+        ifc.seekg(0);
+        string name;
+        int age;
+        string dept;
+        ifc>>name;
+        ifc>>age;
+        ifc>>dept;
+        p.setName(name);
+        p.setAge(age);
+        p.dept = dept;
+        return ifc;
+    }
+    static void displayAll();
+};
+
+void Person::displayAll(){
+    string content;
+    ifstream ifc;
+    ifc.seekg(0);
+    cout<<"Showing all data"<<endl;
+    ifc.open("person.txt",ios::in);
+    if(!ifc.is_open()){cout<<"Cannot open"<<endl;}
+    while(!ifc.eof()){
+        ifc>>content;
+        cout<<content<<endl;
+    }
+    ifc.close();
+}
+
+int main()
+{
+
+    while(1){
+            int ch;
+        cout<<"Welcome"<<endl;
+        cout<<"1 -> Enter new Person (Removes previous all data)"<<endl;
+        cout<<"2 -> Append new Person (Keeps previous all data)"<<endl;
+        cout<<"3 -> Show all data"<<endl;
+        cout<<"4 -> Exit"<<endl;
+        cout<<"Enter your choise:\t"<<endl;
+        cin>>ch;
+        switch(ch){
+       case 1:
+            {
+                string name;
+                int age;
+                string dept;
+                cout<<"Enter name age and dept resp."<<endl;
+                cin>>name>>age>>dept;
+                Person *p = new Person(name,age,dept);
+                ofstream ofc("person.txt",ios::trunc);
+                ofc<<*p;
+                ofc.close();
+                cout<<"Data Entered"<<endl;
+                break;
+            }
+       case 2:
+            {
+                string name;
+                int age;
+                string dept;
+                cout<<"Enter name age and dept resp."<<endl;
+                cin>>name>>age>>dept;
+                Person *p = new Person(name,age,dept);
+                ofstream ofc("person.txt",ios::app);
+                ofc<<*p;
+                ofc.close();
+                cout<<"Data Entered"<<endl;
+                break;
+            }
+       case 3:
+            {
+                Person::displayAll();
+                break;
+            }
+       case 4:
+            {
+                break;
+            }
+       default:
+            cout<<"Please enter valid choice"<<endl;
+        }
+    }
+
+    return 0;
+}

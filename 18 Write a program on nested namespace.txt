@@ -1,0 +1,31 @@
+AIM : Write a program on nested namespace
+
+#include <iostream>
+
+using namespace std;
+
+namespace first{
+    void fun(){
+        cout<<"This is first function"<<endl;
+    }
+}
+
+namespace second{
+    void fun(){
+        cout<<"This is Second function"<<endl;
+    }
+    namespace third{
+        void fun(){
+            cout<<"This is third function"<<endl;
+        }
+    }
+}
+
+using namespace first;
+int main()
+{
+    fun();
+    second::fun();
+    second::third::fun();
+    return 0;
+}

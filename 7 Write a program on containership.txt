@@ -1,0 +1,54 @@
+AIM : Write a program to implement containership of book class inside a library class
+
+#include <iostream>
+#include<vector>
+
+using namespace std;
+
+class Book{
+private:
+    string name;
+    float price;
+    string author;
+public:
+    Book(string n,string a,float p){
+        this->name = n;
+        this->author = a;
+        this->price = p;
+    }
+};
+
+class Library{
+private:
+    string name;
+    int numberOfBooks;
+    vector<Book> bookList;
+public:
+    Library(){
+        this->name = "Some Name";
+        this->bookList = {};
+        this->numberOfBooks = this->bookList.size();
+    }
+    void setNo(int n){this->numberOfBooks = n;}
+    int getNo(){return this->numberOfBooks;}
+    void setName(string name){this->name = name;}
+    string getName(){return this->name;}
+    void addBook(Book b){
+        bookList.push_back(b);
+        this->setNo(this->bookList.size());
+    }
+    void display(){
+        cout<<this->getName()<<endl;
+        cout<<"No. of books "<<this->getNo()<<endl;
+    }
+};
+
+int main()
+{
+   Library l;
+   l.setName("Anmol's Library");
+
+   Book b("Let us C","Yashwant kanetkar",300.00);
+   l.addBook(b);
+   l.display();
+}

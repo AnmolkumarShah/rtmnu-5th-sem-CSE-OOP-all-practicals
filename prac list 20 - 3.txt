@@ -1,0 +1,44 @@
+#include <iostream>
+
+using namespace std;
+
+class Employee{
+private:
+    int age;
+    string name;
+    int id;
+public:
+    Employee(int age = 0,string name = "Anonymous",int id = 1){
+        this->age = age;
+        this->name = name;
+        this->id = id;
+    }
+    void getData();
+    void display();
+
+};
+
+void Employee::getData(){
+    cout<<"Enter Name"<<endl;
+    cin>>this->name;
+     cout<<"Enter age"<<endl;
+    cin>>this->age;
+     cout<<"Enter id"<<endl;
+    cin>>this->id;
+}
+
+void Employee::display(){
+    cout<<this->name<<" "<<this->age<<" "<<this->id<<endl;
+}
+
+int main()
+{
+    Employee E[5];
+    for(int i=0;i<5;i++){
+        E[i].getData();
+    }
+    for(int i=0;i<5;i++){
+        E[i].display();
+    }
+    return 0;
+}

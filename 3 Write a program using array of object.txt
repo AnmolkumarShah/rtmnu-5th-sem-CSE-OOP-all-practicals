@@ -1,0 +1,72 @@
+AIM : Write a program using array of object
+INLAB
+AIM : Create a class employee which include member function for getting and displaying details
+of an employee.Write a main program to get and display the data of atleast 5 employee using the
+concept of array of object.
+
+
+#include <iostream>
+
+using namespace std;
+
+class Employee{
+private:
+    string name;
+    int id;
+    double salary;
+    int age;
+public:
+    Employee();
+    void setData(int id,string name, double salary, int age);
+    void display();
+};
+
+Employee::Employee(){
+    this->name = 'Anonymous';
+    this->age = 0;
+    this->id = 0;
+    this->salary = 0.0;
+}
+
+void Employee::setData(int id,string name, double salary, int age){
+    this->name = name;
+    this->age = age;
+    this->id = id;
+    this->salary = salary;
+}
+
+void Employee::display(){
+    cout<<"Showing data"<<endl;
+    cout<<this->id<<" "<<this->name<<" "<<this->age<<" "<<this->salary<<" "<<endl;
+}
+
+Employee inputData(int i){
+    string name;
+    int age;
+    double salary;
+    cout<<"Enter data of Employee "<<i+1<<endl;
+    cout<<"Enter name"<<endl;
+    cin>>name;
+    cout<<"Enter Age"<<endl;
+    cin>>age;
+    cout<<"Enter Salary"<<endl;
+    cin>>salary;
+    Employee e = Employee();
+    e.setData(i,name,salary,age);
+    return e;
+}
+
+int main()
+{
+    int count;
+    cout<<"Enter no. of employee"<<endl;
+    cin>>count;
+    Employee employeeList[count];
+    for(int i=0;i<count;i++){
+      employeeList[i] = inputData(i);
+    }
+    for(int i=0;i<count;i++){
+      employeeList[i].display();
+    }
+    return 0;
+}

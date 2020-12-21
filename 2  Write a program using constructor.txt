@@ -1,0 +1,63 @@
+#include <iostream>
+
+using namespace std;
+
+class Stack{
+private:
+    int size;
+    int *ptr;
+    int i;
+public:
+    Stack(int size){
+        this->size = size;
+        this->ptr = new int[this->size];
+        this->i = -1;
+    }
+    void push(int data);
+    void pop();
+    void display();
+    void overflow();
+};
+
+
+void Stack::push(int data){
+    if(this->i <= this->size){
+        this->i++;
+        this->ptr[this->i] = data;
+    }else{
+        cout<<"Stack overflow"<<endl;
+    }
+}
+
+void Stack::pop(){
+    if(this->i >= 0){
+        cout<<endl<<"popped element "<<this->ptr[i];
+        this->i--;
+    }else{
+        cout<<"Stack underflow"<<endl;
+    }
+}
+
+void Stack::display(){
+    cout<<endl;
+    for(int i=0;i<=this->i;i++){
+        cout<<this->ptr[i]<<" ";
+    }
+}
+
+int main()
+{
+    Stack s(5);
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+    s.push(60);
+    s.push(70);
+    s.display();
+    s.pop();
+    s.display();
+    return 0;
+}
+

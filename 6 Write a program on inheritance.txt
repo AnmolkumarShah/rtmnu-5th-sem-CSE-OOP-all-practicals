@@ -1,0 +1,244 @@
+INLAB AIM : Create employee bio-data using following classes i) Personal record ii))Professional
+record iii) Academic record Assume appropriate data members and member function to accept
+required data & print bio-data. Create bio-data using multiple inheritance using C++.
+
+#include <iostream>
+
+using namespace std;
+
+class PersonalRecord{
+private:
+    string name;
+    int age;
+    float height;
+public:
+    PersonalRecord();
+    void setName(string n);
+    string getName();
+    void setAge(int a);
+    int getAge();
+    void setHeight(float h);
+    float getHeight();
+    ~PersonalRecord();
+};
+
+class ProfessionalRecord{
+private:
+    float salary;
+    string position;
+public:
+    ProfessionalRecord();
+    void setSalary(float s);
+    void setPosition(string p);
+    float getSalary();
+    string getPosition();
+    ~ProfessionalRecord();
+};
+
+class AcadmicRecord{
+private:
+    float averageMarks;
+public:
+    AcadmicRecord();
+    float getMarks();
+    void setMarks(float m);
+    ~AcadmicRecord();
+};
+
+class Employee:public PersonalRecord,public AcadmicRecord,public ProfessionalRecord{
+public:
+    Employee();
+    void display();
+};
+
+int main()
+{
+    Employee e;
+    e.display();
+    return 0;
+}
+Employee::Employee(){
+    int age;
+    float height;
+    string name;
+    float marks;
+    string position;
+    float salary;
+    cout<<"Enter Age,Height,Name,Marks,Position,Salary respectively"<<endl;
+    cin>>age>>height>>name>>marks>>position>>salary;
+
+    this->setAge(age);
+    this->setHeight(height);
+    this->setName(name);
+    this->setMarks(marks);
+    this->setPosition(position);
+    this->setSalary(salary);
+}
+void Employee::display(){
+   cout<<this->getAge()<<" "<<this->getHeight()<<" "<<this->getName()<<endl;
+   cout<<this->getMarks()<<" "<<this->getPosition()<<" "<<this->getSalary()<<endl;
+}
+
+void AcadmicRecord::setMarks(float m){
+    this->averageMarks = m;
+}
+float AcadmicRecord::getMarks(){
+    return this->averageMarks;
+}
+
+AcadmicRecord::AcadmicRecord(){
+    this->averageMarks = 0.0;
+}
+
+AcadmicRecord::~AcadmicRecord(){
+     cout<<"end"<<endl;
+}
+ProfessionalRecord::~ProfessionalRecord(){
+    cout<<"end"<<endl;
+}
+string ProfessionalRecord::getPosition(){
+    return this->position;
+}
+float ProfessionalRecord::getSalary(){
+    return this->salary;
+}
+void ProfessionalRecord::setPosition(string p){
+    this->position = p;
+}
+void ProfessionalRecord::setSalary(float s){
+    this->salary = s;
+}
+ProfessionalRecord::ProfessionalRecord(){
+    this->salary = 0.0;
+    this->position = "None";
+}
+
+PersonalRecord::~PersonalRecord(){
+    cout<<"Class Destructed"<<endl;
+}
+PersonalRecord::PersonalRecord(){
+    this->age = 0;
+    this->height = 0.0;
+    this->name = "Anonymous";
+}
+void PersonalRecord::setName(string n){
+    this->name = n;
+}
+void PersonalRecord::setHeight(float h){
+    this->height = h;
+}
+void PersonalRecord::setAge(int a){
+    this->age = a;
+}
+string PersonalRecord::getName(){
+    return this->name;
+}
+float PersonalRecord::getHeight(){
+    return this->height;
+}
+int PersonalRecord::getAge(){
+    return this->age;
+}
+
+
+
+
+POSTLAB AIM : Create a class hierarchy of employee as a parent class and
+manager,scientist,loborer class as child class.Assume suitable data members and members functions
+to implement this relationship.
+
+#include <iostream>
+
+using namespace std;
+
+class Employee{
+private:
+    string name;
+    int age;
+public:
+    Employee();
+    void setName(string n);
+    string getName();
+    void setAge(int a);
+    int getAge();
+};
+
+class Manager:public Employee{
+private:
+    string work;
+public:
+    Manager();
+    void setWork(string w);
+    string getWork();
+    void display();
+};
+
+class Loborer:public Employee{
+private:
+    string work;
+public:
+    Loborer();
+    void setWork(string w);
+    string getWork();
+    void display();
+};
+
+class Scientist:public Employee{
+private:
+    string work;
+public:
+    Scientist();
+    void setWork(string w);
+    string getWork();
+    void display();
+};
+
+int main()
+{
+    Manager m;
+    Scientist s;
+    Loborer l;
+    m.setName("Anmol");
+    m.setAge(20);
+    m.display();
+    return 0;
+}
+
+Loborer::Loborer(){
+    this->work = "Some Labouring work";
+}
+void Loborer::setWork(string w){this->work = w;}
+string Loborer::getWork(){return this->work;}
+void Loborer::display(){cout<<this->getName()<<" "<<this->getAge()<<" "<<this->work<<endl;}
+
+Manager::Manager(){
+    this->work = "Some Managing work";
+}
+void Manager::setWork(string w){this->work = w;}
+string Manager::getWork(){return this->work;}
+void Manager::display(){cout<<this->getName()<<" "<<this->getAge()<<" "<<this->work<<endl;}
+
+Scientist::Scientist(){
+    this->work = "Some Scientific work";
+}
+void Scientist::setWork(string w){this->work = w;}
+string Scientist::getWork(){return this->work;}
+void Scientist::display(){cout<<this->getName()<<" "<<this->getAge()<<" "<<this->work<<endl;}
+
+int Employee::getAge(){
+    return this->age;
+}
+void Employee::setAge(int a){
+    this->age = a;
+}
+string Employee::getName(){
+    return this->name;
+}
+void Employee::setName(string n){
+    name = n;
+}
+Employee::Employee(){
+    name = "Anonymous";
+    age = 0;
+}
+

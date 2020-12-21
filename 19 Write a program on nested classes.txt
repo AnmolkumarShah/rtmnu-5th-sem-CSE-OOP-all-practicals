@@ -1,0 +1,34 @@
+Aim : Write a program on nested classes
+
+#include <iostream>
+
+using namespace std;
+
+class Outer{
+public:
+    Outer(){
+        cout<<"Constructor of outer"<<endl;
+    }
+    void fun(){
+        i.display();
+    }
+    class Inner{
+    public:
+        Inner(){
+            cout<<"Constructor of Inner"<<endl;
+        }
+        void display(){
+            cout<<"Display of inner class"<<endl;
+        }
+    };
+    Inner i;
+};
+
+int main()
+{
+    Outer o;
+    o.fun();
+    Outer::Inner i1;
+    i1.display();
+    return 0;
+}

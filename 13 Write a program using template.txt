@@ -1,0 +1,58 @@
+INLAB AIM : Implement a generic vector. Include following member functions:
+To create the vector.
+To modify the value of a given element
+To multiply by a scalar value
+To display the vector in the form (10,20,30,...)
+
+
+#include <iostream>
+
+using namespace std;
+template <class T>
+class Vector{
+private:
+    T x;
+    T y;
+    T z;
+public:
+    Vector(T x,T y,T z);
+    void changeVector(T x,T y,T z);
+    Vector multiply(T scaler);
+    void display();
+};
+template <class T>
+void Vector<T>::display(){
+    cout<<x<<"i + "<<y<<"j + "<<z<<"k"<<endl;
+}
+
+template <class T>
+Vector<T> Vector<T>::multiply(T scaler){
+    this->x *= scaler;
+    this->y *= scaler;
+    this->z *= scaler;
+}
+
+template <class T>
+void Vector<T>::changeVector(T x,T y,T z){
+    this->x = x;
+    this->y = y;
+    this->z = z;
+}
+
+template <class T>
+Vector<T>::Vector(T x,T y,T z){
+    this->x = x;
+    this->y = y;
+    this->z = z;
+}
+
+int main()
+{
+    Vector<int> v(2,4,6);
+    Vector<float> v2(2.2,4.8,9.5);
+    v.multiply(3);
+    v2.multiply(5.7);
+    v2.display();
+    v.display();
+    return 0;
+}
